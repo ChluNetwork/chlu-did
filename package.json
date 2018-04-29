@@ -1,7 +1,15 @@
 {
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "bs58": "4.0.1",
     "chloride": "2.2.9",
     "node-forge": "0.7.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3"
   }
 }

@@ -15,6 +15,8 @@ it('generates a new did', async () => {
   const generator = new Generator()
   const did = await generator.generate()
   expect(did).not.toBe(undefined)
+
+  // console.log(JSON.stringify(did))
   
   expect(did.publicDidDocument).not.toBe(null)
   expect(did.privateDidDocument).toBe(null)

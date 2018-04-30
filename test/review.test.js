@@ -5,25 +5,18 @@ const chluDID = {"@context":"https://w3id.org/did/v1","id":"did:chlu:B6BrdJTTCzu
 
 const vendorDID = {"@context":"https://w3id.org/did/v1","id":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","publicKey":[{"id":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY#keys-1","type":"Ed25519VerificationKey2018","owner":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","publicKeyBase58":"GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","privateKeyBase58":"4sGHzpG5th38v4WhaShoXRKaDvN3vtXgXqQjCwcqs19xetAhkbabBitKFPPgZnrGESQaQrfdeTbqZjbzh7C6sZaS"}],"authentication":[{"type":"Ed25519SignatureAuthentication2018","publicKey":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY#keys-1"}]}
 
-it('Signs a review, returning a verifiable claim', async () => {
+const signedVC = {"@context":["https://w3id.org/credentials/v1","http://schema.org/"],"subject":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","issuer":"did:chlu:B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU","claim":{"ReviewBody":"blah","ReviewRating":5},"sec:proof":{"@graph":{"type":"sec:Ed25519Signature2018","created":"2018-04-30T12:19:54Z","sec:jws":"eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..3wrjm2ERq1cIPyQvm39Cho0GGOU1HuaYh-ZDV9VnpHgm9tUYaaYPrS6zFYU3656BLd86ibMFFW__XohCYi3NAg"}}}
 
+beforeAll(() => {
   setupSchemaMocks()
-  
+})
+
+it('Signs a review, returning a verifiable claim', async () => { 
   const review = {
         ReviewBody: "blah",
         ReviewRating: 5
-  }
-  // {
-  //   "id": "http://chlu.io/credentials/1",
-  //   "type": ["Credential"],
-  //   "issuer": "https://dmv.example.gov",
-  //   "issued": "2010-01-01",
-  //   "claim": {
-  //     "id": "did:ebfeb1f712ebc6f1c276e12ec21",
-  //     "ageOver": 21
-  //   }
-  // }
-  
+  }  
+
   const vc = await new Review().sign(chluDID, vendorDID, review)
 
   expect(vc).not.toBe(undefined)
@@ -32,4 +25,11 @@ it('Signs a review, returning a verifiable claim', async () => {
   expect(vc.claim).toEqual(review)
   expect(vc['sec:proof']).not.toBe(null)
   expect(vc['sec:proof']).not.toBe(undefined)
+  console.log(vc)
 })
+
+// it('Verifies a verifiable claim', async () => { 
+//   const claim = await new Review().verify(chluDID, signedVC)
+
+//   console.log(claim)
+// })

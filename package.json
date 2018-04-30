@@ -5,6 +5,7 @@
   "dependencies": {
     "bs58": "4.0.1",
     "chloride": "2.2.9",
+    "jsonld-signatures": "2.3.0",
     "node-forge": "0.7.5"
   },
   "devDependencies": {

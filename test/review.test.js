@@ -1,10 +1,13 @@
 import Review from '../lib/review'
+import setupSchemaMocks from './schema-mocks'
 
 const chluDID = {"@context":"https://w3id.org/did/v1","id":"did:chlu:B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU","publicKey":[{"id":"did:chlu:B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU#keys-1","type":"Ed25519VerificationKey2018","owner":"did:chlu:B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU","publicKeyBase58":"B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU","privateKeyBase58":"28dDPywX1z4Sv7ksWthdh6yGN6ua42YER34mN5Q3dLqosLEH4L3s5HSvRtdEDqNsvU33Ug84gfkJpHpTUZyga7bx"}],"authentication":[{"type":"Ed25519SignatureAuthentication2018","publicKey":"did:chlu:B6BrdJTTCzu9m52rKVZnitaLPNB6GhTWn6MkPJhrTksU#keys-1"}]}
 
 const vendorDID = {"@context":"https://w3id.org/did/v1","id":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","publicKey":[{"id":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY#keys-1","type":"Ed25519VerificationKey2018","owner":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","publicKeyBase58":"GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY","privateKeyBase58":"4sGHzpG5th38v4WhaShoXRKaDvN3vtXgXqQjCwcqs19xetAhkbabBitKFPPgZnrGESQaQrfdeTbqZjbzh7C6sZaS"}],"authentication":[{"type":"Ed25519SignatureAuthentication2018","publicKey":"did:chlu:GuhduVevhGzwc8DtyNQWoUUQvSWcAZrTuNqNL9bG7XfY#keys-1"}]}
 
-fit('Signs a review, returning a verifiable claim', async () => {
+it('Signs a review, returning a verifiable claim', async () => {
+
+  setupSchemaMocks()
   
   const review = {
         ReviewBody: "blah",

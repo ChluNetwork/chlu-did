@@ -1,40 +1,44 @@
-import Generator from '../lib/generator'
+const Generator = require('../lib/generator')
+const elliptic = require('elliptic')
+const expect = require('chai').expect
 
-it('generates key pair', async () => {
-  const generator = new Generator()
-  const kp = await generator.generateEd25519KeyPair()
+describe('Generator', () => {
 
-  expect(kp).not.toBe(undefined)  
-  expect(kp.publicKey).not.toBe(null)
-  expect(kp.privateKey).not.toBe(null)
-})
+  let ec
+
+  before(() => {
+    ec = new elliptic.eddsa('ed25519')
+  })
+
+  it('generates key pair', async () => {
+    const generator = new Generator(ec)
+    const kp = await generator.generateEd25519KeyPair()
+
+    expect(kp.publicKey).to.be.a('string')
+    expect(kp.privateKey).to.be.a('string')
+  })
 
 
-it('generates a new did', async () => {
+  it('generates a new did', async () => {
 
-  const generator = new Generator()
-  const did = await generator.generate()
-  expect(did).not.toBe(undefined)
+    const generator = new Generator(ec)
+    const did = await generator.generate()
+    expect(did).not.to.be.undefined
 
-  // console.log(JSON.stringify(did))
-  
-  expect(did.publicDidDocument).not.toBe(null)
-  expect(did.privateDidDocument).toBe(null)
-  
-  expect(did.publicDidDocument['@context']).toBe('https://w3id.org/did/v1')
+    //expect(did.privateDidDocument).not.to.be.undefined
+    
+    expect(did.publicDidDocument['@context']).to.equal('https://w3id.org/did/v1')
 
-  expect(did.publicDidDocument.id).toEqual(expect.anything())
-  expect(did.publicDidDocument.id).toEqual(expect.stringMatching(/did:chlu:.*/))
-  expect(did.publicDidDocument.id).not.toEqual("did:chlu:undefined")
-  expect(did.publicDidDocument.id).not.toEqual("did:chlu:null")
+    expect(did.publicDidDocument.id).to.match(/^did:chlu:/)
+    expect(did.publicDidDocument.id).not.to.equal("did:chlu:undefined")
+    expect(did.publicDidDocument.id).not.to.equal("did:chlu:null")
 
-  const publicKeyBase58 = did.publicDidDocument.id.split(':')[2]
-  expect(did.publicDidDocument.publicKey).toEqual(expect.anything())
-  expect(did.publicDidDocument.publicKey[0].id).toEqual(`${did.publicDidDocument.id}#keys-1`)
-  expect(did.publicDidDocument.publicKey[0].type).toEqual("Ed25519VerificationKey2018")
-  expect(did.publicDidDocument.publicKey[0].owner).toEqual(`${did.publicDidDocument.id}`)
-  expect(did.publicDidDocument.publicKey[0].publicKeyBase58).toEqual(publicKeyBase58)
+    const publicKeyBase58 = did.publicDidDocument.id.split(':')[2]
+    expect(did.publicDidDocument.publicKey[0].id).to.equal(`${did.publicDidDocument.id}#keys-1`)
+    expect(did.publicDidDocument.publicKey[0].type).to.equal("Ed25519VerificationKey2018")
+    expect(did.publicDidDocument.publicKey[0].owner).to.equal(`${did.publicDidDocument.id}`)
+    expect(did.publicDidDocument.publicKey[0].publicKeyBase58).to.equal(publicKeyBase58)
 
-  expect(did.publicDidDocument.authentication).toEqual(expect.anything()) 
-  expect(did.publicDidDocument.authentication[0].publicKey).toEqual(`did:chlu:${publicKeyBase58}#keys-1`)
+    expect(did.publicDidDocument.authentication[0].publicKey).to.equal(`did:chlu:${publicKeyBase58}#keys-1`)
+  })
 })

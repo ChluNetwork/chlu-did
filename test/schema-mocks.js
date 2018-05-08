@@ -1,6 +1,6 @@
-import nock from 'nock'
+const nock = require('nock')
 
-export default function setupSchemaMocks() {
+module.exports = function setupSchemaMocks() {
 
   nock.disableNetConnect();
   

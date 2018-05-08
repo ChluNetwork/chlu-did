@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <div id="app">Loading...</div>
+        <script src="../dist/chlu-did.min.js"></script>
+        <script>
+
+            function show(obj) {
+                console.log(obj)
+                document.getElementById('app').innerHTML = JSON.stringify(obj, undefined, 2)
+            }
+
+            async function main() {
+                const DID = new ChluDID()
+                const did = await DID.generateDID()
+                show(did)
+            }
+
+            main()
+        </script>
+    </body>
+</html>

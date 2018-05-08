@@ -5,16 +5,16 @@
 ```
 {
   "@context": "https://w3id.org/did/v1",
-  "id": "did:chlu:chlu",
+  "id": "did:chlu:3xv5...",
   "publicKey": [{
-    "id": "did:chlu:chlu#keys-1",
-    "type": "RsaVerificationKey2018",
-    "owner": "did:chlu:chlu",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    "id": "did:chlu:3xv5...#keys-1",
+    "type": "Ed25519VerificationKey2018",
+    "owner": "did:chlu:3xv5...",
+    "publicKeyBase58": "3xv5..."
   }],
   "authentication": [{
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": "did:chlu:chlu#keys-1"
+    "type": "Ed25519SignatureAuthentication2018",
+    "publicKey": "did:chlu:3xv5...#keys-1"
   }]
 }
 ```
@@ -27,12 +27,12 @@
   "id": "did:chlu:vendor-1",
   "publicKey": [{
     "id": "did:chlu:vendor-1#keys-1",
-    "type": "RsaVerificationKey2018",
+    "type": "Ed25519VerificationKey2018",
     "owner": "did:chlu:vendor-1",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    "publicKeyBase58": "..."
   }],
   "authentication": [{
-    "type": "RsaSignatureAuthentication2018",
+    "type": "Ed25519SignatureAuthentication2018",
     "publicKey": "did:chlu:vendor-1#keys-1"
   }]
 }
@@ -78,7 +78,7 @@
     }
   },
   "proof": {
-    "type": "RsaSignature2018",
+    "type": "Ed25519Signature2018",
     "created": "2018-04-28T21:19:10Z",
     "creator": "did:chlu:chlu",
     "nonce": "c0ae1c8e-c7e7-469f-b252-86e6a0e7387e",

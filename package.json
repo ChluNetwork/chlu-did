@@ -21,7 +21,11 @@
     "webpack": "^4.8.1",
     "webpack-cli": "^2.1.3"
   },
-  "repository": "git@github.com:ChluNetwork/chlu-did.git",
-  "author": "Enrico Fasoli <enrico.fasoli1996@gmail.com>",
+  "repository": "https://github.com/ChluNetwork/chlu-did.git",
+  "author": {
+    "name": "Chlu",
+    "email": "info@chlu.io",
+    "url": "https://chlu.io"
+  },
   "license": "MIT"
 }

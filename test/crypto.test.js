@@ -1,4 +1,4 @@
-const ChluDID = require('../')
+const ChluDID = require('../src')
 const expect = require('chai').expect
 
 describe('DID signing', () => {

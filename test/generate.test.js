@@ -1,4 +1,4 @@
-const Generator = require('../lib/generator')
+const Generator = require('../src/generator')
 const elliptic = require('elliptic')
 const expect = require('chai').expect
 

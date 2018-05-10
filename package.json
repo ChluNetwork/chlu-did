@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "webpack-cli"
+    "build": "webpack-cli",
+    "compile": "rimraf lib/* && babel src -d lib",
+    "prepublish": "npm run compile"
   },
   "dependencies": {
     "brorand": "^1.1.0",
@@ -14,9 +16,10 @@
     "jsonld-signatures": "2.3.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
+    "babel-cli": "*",
+    "babel-eslint": "*",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "*",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "mocha": "^5.1.1",

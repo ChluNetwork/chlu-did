@@ -1,7 +1,11 @@
 {
   "name": "chlu-did",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.6.0"
+  },
   "scripts": {
     "test": "mocha",
     "build": "webpack-cli",
@@ -15,10 +19,10 @@
     "js-sha3": "^0.7.0"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-eslint": "*",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.6",
     "babel-polyfill": "6.26.0",
-    "babel-preset-env": "*",
+    "babel-preset-env": "1.7.0",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "mocha": "^5.1.1",
@@ -27,6 +31,10 @@
     "webpack-cli": "^2.1.3"
   },
   "repository": "https://github.com/ChluNetwork/chlu-did.git",
+  "bugs": {
+    "url": "https://github.com/ChluNetwork/chlu-did/issues"
+  },
+  "homepage": "https://github.com/ChluNetwork/chlu-did/blob/master/README.md",
   "author": {
     "name": "Chlu",
     "email": "info@chlu.io",
